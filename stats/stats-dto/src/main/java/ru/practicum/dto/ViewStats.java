@@ -1,20 +1,19 @@
 package ru.practicum.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ViewStats {
     @JsonProperty("app")
-    private String app;
+     String app;
     @JsonProperty("uri")
-    private String uri;
+     String uri;
     @JsonProperty("hits")
-    private Long hits;
+      Long hits;
 }

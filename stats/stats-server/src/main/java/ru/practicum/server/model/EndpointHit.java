@@ -1,7 +1,11 @@
 package ru.practicum.server.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
+import ru.practicum.server.constants.Pattern;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,16 +14,18 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "statistics")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EndpointHit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+     Long id;
     @Column(nullable = false)
-    private String app;
+     String app;
     @Column(nullable = false)
-    private String uri;
+     String uri;
     @Column(nullable = false)
-    private String ip;
+     String ip;
     @Column(nullable = false)
-    private LocalDateTime timestamp;
+    @DateTimeFormat(pattern = Pattern.DATE)
+     LocalDateTime timestamp;
 }

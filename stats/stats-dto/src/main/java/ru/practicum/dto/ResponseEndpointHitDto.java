@@ -1,14 +1,17 @@
 package ru.practicum.dto;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ResponseEndpointHitDto {
-    private Long id;
-    private String app;
-    private String uri;
-    private String ip;
-    private String timestamp;
+     Long id;
+     String app;
+     String uri;
+     String ip;
+     String timestamp;
 }
