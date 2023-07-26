@@ -1,7 +1,9 @@
 package ru.practicum.main.dto.compilation;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -10,10 +12,9 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewCompilationDto {
-     List<Long> events;
-     Boolean pinned;
+    private List<Long> events;
+    private Boolean pinned;
     @NotBlank
-     String title;
+    private String title;
 }
