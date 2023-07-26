@@ -1,7 +1,9 @@
 package ru.practicum.main.models;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -11,13 +13,12 @@ import javax.persistence.*;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long id;
-     String name;
+    private Long id;
+    private String name;
     @Column(unique = true)
-     String email;
+    private String email;
 
 }

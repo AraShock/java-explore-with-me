@@ -1,4 +1,3 @@
----
+# java-explore-with-me
 
-# *Java-explore-with-me*
-
+Template repository for ExploreWithMe project.

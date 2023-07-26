@@ -2,8 +2,10 @@ package ru.practicum.main.dto.request;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.practicum.main.constants.Pattern;
 
 import java.time.LocalDateTime;
@@ -12,12 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RequestDto {
-     Long id;
+    private Long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
-     LocalDateTime created;
-     Long event;
-     Long requester;
-     String status;
+    private LocalDateTime created;
+    private Long event;
+    private Long requester;
+    private String status;
 }

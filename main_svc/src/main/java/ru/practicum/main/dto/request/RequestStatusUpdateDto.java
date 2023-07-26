@@ -1,7 +1,9 @@
 package ru.practicum.main.dto.request;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.practicum.main.enums.RequestStatusToUpdate;
 
 import java.util.List;
@@ -10,8 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RequestStatusUpdateDto {
-     List<Long> requestIds;
-     RequestStatusToUpdate status;
+    private List<Long> requestIds;
+    private RequestStatusToUpdate status;
 }
