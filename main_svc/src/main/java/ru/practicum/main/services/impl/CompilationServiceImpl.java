@@ -39,16 +39,27 @@ public class CompilationServiceImpl implements CompilationService {
     @Override
     @Transactional
     public CompilationDto createCompilation(NewCompilationDto newCompilationDto) {
-        List<Event> events = eventRepository.findAllByIdIn(newCompilationDto.getEvents());
-        Compilation compilation = new Compilation();
-        compilation.setEvents(new HashSet<>(events));
-        compilation.setPinned(newCompilationDto.getPinned());
-        compilation.setTitle(newCompilationDto.getTitle());
-
-        Compilation savedCompilation = compilationRepository.save(compilation);
-        log.debug("Compilation is created");
-        setView(savedCompilation);
-        return mapper.mapToCompilationDto(savedCompilation);
+        if (newCompilationDto.getPinned() == null) {
+            newCompilationDto.setPinned(false);
+        }
+        if (newCompilationDto.getEvents() != null) {
+            List<Event> events = eventRepository.findAllByIdIn(newCompilationDto.getEvents());
+            Compilation compilation = new Compilation();
+            compilation.setEvents(new HashSet<>(events));
+            compilation.setPinned(newCompilationDto.getPinned());
+            compilation.setTitle(newCompilationDto.getTitle());
+            Compilation savedCompilation = compilationRepository.save(compilation);
+            log.debug("Compilation is created");
+            setView(savedCompilation);
+            return mapper.mapToCompilationDto(savedCompilation);
+        } else {
+            Compilation compilation = new Compilation();
+            compilation.setPinned(newCompilationDto.getPinned());
+            compilation.setTitle(newCompilationDto.getTitle());
+            Compilation savedCompilation = compilationRepository.save(compilation);
+            log.debug("Compilation is created");
+            return mapper.mapToCompilationDto(savedCompilation);
+        }
     }
 
     public CompilationDto getCompilation(Long compId) {

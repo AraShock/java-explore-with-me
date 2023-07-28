@@ -8,7 +8,7 @@ services:
     depends_on:
       - stats-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/exploreWithMeStat?user=user&password=user
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/exploreWithMeStat?user=root&password=root
 
   stats-db:
     image: postgres:14-alpine
@@ -17,8 +17,8 @@ services:
       - "6543:5432"
     environment:
       - POSTGRES_DB=exploreWithMeStat
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=user
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
 
   ewm-service:
     build: main_svc
@@ -28,7 +28,7 @@ services:
     depends_on:
       - ewm-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/exploreWithMe?user=userdb&password=userdb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/exploreWithMe?user=root&password=root
       - STAT_SERVER_URL=http://ewm-stat:9090
 
   ewm-db:
@@ -38,5 +38,5 @@ services:
       - "6542:5432"
     environment:
       - POSTGRES_DB=exploreWithMe
-      - POSTGRES_USER=userdb
-      - POSTGRES_PASSWORD=userdb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root

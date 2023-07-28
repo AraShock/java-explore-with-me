@@ -78,7 +78,6 @@ public class EventServiceImpl implements EventService {
         if (updateEventAdminDto == null) {
             return eventMapper.toEventFullDto(event);
         }
-
         if (updateEventAdminDto.getAnnotation() != null) {
             event.setAnnotation(updateEventAdminDto.getAnnotation());
         }
@@ -123,14 +122,11 @@ public class EventServiceImpl implements EventService {
         }
         if (updateEventAdminDto.getEventDate() != null) {
             LocalDateTime eventDateTime = updateEventAdminDto.getEventDate();
-            if (eventDateTime.isBefore(LocalDateTime.now())
-                    || eventDateTime.isBefore(event.getPublishedOn().plusHours(1))) {
+            if (eventDateTime.isBefore(LocalDateTime.now().plusHours(2))) {
                 throw new WrongTimeException("The start date of the event to be modified is less than one hour from the publication date.");
             }
-
             event.setEventDate(updateEventAdminDto.getEventDate());
         }
-
         return eventMapper.toEventFullDto(eventRepository.save(event));
     }
 
@@ -142,11 +138,9 @@ public class EventServiceImpl implements EventService {
         if (event.getPublishedOn() != null) {
             throw new AlreadyPublishedException("Event already published");
         }
-
         if (updateEventUserDto == null) {
             return eventMapper.toEventFullDto(event);
         }
-
         if (updateEventUserDto.getAnnotation() != null) {
             event.setAnnotation(updateEventUserDto.getAnnotation());
         }
@@ -187,7 +181,6 @@ public class EventServiceImpl implements EventService {
                 event.setState(EventState.CANCELED);
             }
         }
-
         return eventMapper.toEventFullDto(eventRepository.save(event));
     }
 
@@ -250,7 +243,7 @@ public class EventServiceImpl implements EventService {
                                                         String rangeEnd, Boolean onlyAvailable, SortValue sort, Integer from, Integer size, HttpServletRequest request) {
         LocalDateTime start = rangeStart != null ? LocalDateTime.parse(rangeStart, dateFormatter) : null;
         LocalDateTime end = rangeEnd != null ? LocalDateTime.parse(rangeEnd, dateFormatter) : null;
-
+        checkDateTime(start, end);
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Event> query = builder.createQuery(Event.class);
 
@@ -408,13 +401,25 @@ public class EventServiceImpl implements EventService {
 
         List<ViewStatsDto> stats = getStats(startTime, endTime, uris);
         if (stats.size() == 1) {
-            event.setViews(stats.get(0).getHits());
+            event.setViews(stats.get(0).getHits() + 1);
         } else {
-            event.setViews(0L);
+            event.setViews(1L);
         }
     }
 
     private List<ViewStatsDto> getStats(String startTime, String endTime, List<String> uris) {
         return statClient.getStats(startTime, endTime, uris, false);
+    }
+
+    private void checkDateTime(LocalDateTime start, LocalDateTime end) {
+        if (start == null) {
+            start = LocalDateTime.now().minusYears(100);
+        }
+        if (end == null) {
+            end = LocalDateTime.now();
+        }
+        if (start.isAfter(end)) {
+            throw new WrongTimeException("Некорректный запрос. Дата окончания события задана позже даты старта");
+        }
     }
 }
