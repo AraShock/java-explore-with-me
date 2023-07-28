@@ -152,7 +152,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public ApiError handleEventNotExistException(final EventNotExistException exception ) {
+    public ApiError handleEventNotExistException(final EventNotExistException exception) {
         log.warn(exception.getMessage());
         return new ApiError(exception.getMessage(), "Entity not found",
                 HttpStatus.NOT_FOUND.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(dateFormatter));
