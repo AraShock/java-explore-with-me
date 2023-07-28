@@ -1,5 +1,6 @@
 package ru.practicum.main;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestControllerAdvice
+@Slf4j
 public class ErrorHandler {
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Pattern.DATE);
 
@@ -150,8 +152,9 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public ApiError handleEventNotExistException(final EventNotExistException exception) {
-        return new ApiError(exception.getMessage(), "Event with this id doesn't exist",
+    public ApiError handleEventNotExistException(final EventNotExistException exception ) {
+        log.warn(exception.getMessage());
+        return new ApiError(exception.getMessage(), "Entity not found",
                 HttpStatus.NOT_FOUND.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(dateFormatter));
     }
 
