@@ -11,25 +11,37 @@ import ru.practicum.main.constants.Pattern;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import org.springframework.lang.Nullable;
+import javax.validation.constraints.Future;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class UpdateEventAdminDto {
-    @Size(min = 3, max = 500)
-    private String annotation;
-    private Long category;
+    @Nullable
     @Size(min = 20, max = 2000)
+    private String annotation;
+    @Nullable
+    private Long category;
+    @Nullable
+    @Size(min = 20, max = 7000)
     private String description;
+    @Nullable
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
+    @Future
     private LocalDateTime eventDate;
+    @Nullable
     private Location location;
+    @Nullable
     private Boolean paid;
+    @Nullable
     private Long participantLimit;
+    @Nullable
     private Boolean requestModeration;
+    @Nullable
     private StateActionForAdmin stateAction;
-    @Size(min = 2, max = 120)
+    @Size(min = 3, max = 120)
     private String title;
 }
 
