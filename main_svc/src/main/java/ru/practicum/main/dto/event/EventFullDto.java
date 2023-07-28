@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class EventFullDto {
+
     private String annotation;
     private CategoryDto category;
     private Integer confirmedRequests;

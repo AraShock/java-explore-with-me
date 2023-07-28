@@ -8,7 +8,6 @@ import lombok.Setter;
 import ru.practicum.main.models.Location;
 import ru.practicum.main.constants.Pattern;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -19,23 +18,23 @@ import java.time.LocalDateTime;
 @Setter
 public class NewEventDto {
     @NotNull
-    @Size(min = 20, max = 200)
+    @Size(min = 3, max = 500)
     private String annotation;
     @NotNull
     private Long category;
     @NotNull
-    @Size(min = 20, max = 7000)
+    @Size(min = 20, max = 2000)
     private String description;
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
-    @Future
     private LocalDateTime eventDate;
     @NotNull
     private Location location;
-    private Boolean paid = false;
-    private Long participantLimit = 0L;
-    private Boolean requestModeration = true;
+    private boolean paid;
+    private int participantLimit;
+    private Boolean requestModeration;
     @NotNull
     @Size(min = 3, max = 120)
     private String title;
 }
+я
