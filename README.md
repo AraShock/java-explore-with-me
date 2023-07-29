@@ -1,6 +1,6 @@
 # *Java-explore-with-me*
 
-https://github.com/AraShock/java-explore-with-me
+https://github.com/AraShock/java-explore-with-me/pull/6
 
 Описание проекта
 -
