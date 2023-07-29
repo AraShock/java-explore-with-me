@@ -1,6 +1,9 @@
-package ru.practicum.main.dto.category;
+package ru.practicum.main.dto.comment;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
@@ -8,12 +11,10 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CategoryDto {
-    Long id;
+public class NewCommentDto {
     @NotBlank
-    @Size(max = 50)
-    String name;
+    @Size(min = 20)
+     String text;
 }

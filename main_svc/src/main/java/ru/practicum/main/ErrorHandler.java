@@ -164,4 +164,20 @@ public class ErrorHandler {
         return new ApiError("Can't delete category with this id", "Category with this id doesn't exist",
                 HttpStatus.NOT_FOUND.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(dateFormatter));
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ApiError handleUserNameAlreadyExistException(final CommentConflictException exception) {
+        return new ApiError(exception.getMessage(), "Integrity constraint has been violated.",
+                HttpStatus.CONFLICT.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(dateFormatter));
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiError handleCommentNotExistException(final CommentNotExistException exception) {
+        log.warn(exception.getMessage());
+        return new ApiError(exception.getMessage(), "Entity not found",
+                HttpStatus.NOT_FOUND.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(dateFormatter));
+    }
 }

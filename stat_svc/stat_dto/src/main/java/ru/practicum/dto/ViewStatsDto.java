@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ViewStatsDto {
-     String app;
-     String uri;
-     Long hits;
+    String app;
+    String uri;
+    Long hits;
 }
