@@ -18,6 +18,8 @@ public class CommentDto {
      Long id;
      String text;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
+    String commentID;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.COMMENT_ID)
      LocalDateTime created;
      String authorName;
      Long eventId;
