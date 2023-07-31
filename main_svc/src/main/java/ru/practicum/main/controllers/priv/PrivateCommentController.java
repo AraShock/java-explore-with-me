@@ -42,14 +42,14 @@ public class PrivateCommentController {
         return commentService.createComment(newCommentDto, userId, eventId);
     }
 
-    @PatchMapping(COMMENT_ID)
+    @PatchMapping("/{commentId}")
     public CommentDto updateComment(@RequestBody @Valid NewCommentDto newCommentDto,
                                     @PathVariable(value = "userId") Long userId,
                                     @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.updateCommentByUser(newCommentDto, userId, commentId);
     }
 
-    @GetMapping(COMMENT_ID)
+    @GetMapping("/{commentId}")
     public CommentDto getCommentById(@PathVariable(value = "userId") Long userId,
                                      @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.getCommentsByIdByUser(userId, commentId);
@@ -70,7 +70,7 @@ public class PrivateCommentController {
         return commentService.getUserCommentsByCreateTime(userId, createStart, createEnd, from, size);
     }
 
-    @DeleteMapping(COMMENT_ID)
+    @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCommentByUser(@PathVariable(value = "userId") Long userId,
                                     @PathVariable(value = COMMENT_ID) Long commentId) {

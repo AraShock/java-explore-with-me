@@ -51,7 +51,7 @@ public class AdminCommentController {
         commentService.deleteCommentByAdmin(commentId);
     }
 
-    @PatchMapping("/{COMMENT_ID}")
+    @PatchMapping("/{commentId}")
     public CommentDto updateComment(@RequestBody @Valid NewCommentDto newCommentDto,
                                     @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.updateCommentByAdmin(newCommentDto, commentId);
