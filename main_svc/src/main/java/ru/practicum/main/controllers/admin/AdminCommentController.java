@@ -40,18 +40,18 @@ public class AdminCommentController {
         return commentService.getCommentsByEventIdByAdmin(eventId, from, size);
     }
 
-    @GetMapping(COMMENT_ID)
+    @GetMapping("/{commentId}")
     public CommentDto getCommentById(@PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.getCommentsByIdByAdmin(commentId);
     }
 
-    @DeleteMapping(COMMENT_ID)
+    @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable(value = COMMENT_ID) Long commentId) {
         commentService.deleteCommentByAdmin(commentId);
     }
 
-    @PatchMapping(COMMENT_ID)
+    @PatchMapping("/{COMMENT_ID}")
     public CommentDto updateComment(@RequestBody @Valid NewCommentDto newCommentDto,
                                     @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.updateCommentByAdmin(newCommentDto, commentId);
