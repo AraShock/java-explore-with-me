@@ -16,8 +16,8 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.practicum.main.controllers.admin.AdminCommentController.COMMENT_ID;
-import static ru.practicum.main.controllers.admin.AdminCommentController.ENDPOINT;
+import static ru.practicum.main.constants.Pattern.COMMENT_ID;
+import static ru.practicum.main.constants.Pattern.ENDPOINT;
 
 @RestController
 @RequestMapping("/users/{userId}/comments")
