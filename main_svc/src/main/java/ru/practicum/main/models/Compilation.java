@@ -1,10 +1,8 @@
 package ru.practicum.main.models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,17 +13,18 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "compilations", schema = "public")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Compilation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Boolean pinned;
-    private String title;
+     Long id;
+     Boolean pinned;
+     String title;
     @ManyToMany
     @JoinTable(name = "compilations_events",
             joinColumns = @JoinColumn(name = "compilation_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
     )
     @OrderBy("eventDate")
-    private Set<Event> events;
+     Set<Event> events;
 }

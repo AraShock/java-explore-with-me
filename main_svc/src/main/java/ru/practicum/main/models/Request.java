@@ -1,10 +1,8 @@
 package ru.practicum.main.models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.main.enums.RequestStatus;
 
 import javax.persistence.*;
@@ -17,14 +15,15 @@ import java.time.LocalDateTime;
 @Table(name = "requests", schema = "public")
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime created;
-    private Long event;
-    private Long requester;
+     Long id;
+     LocalDateTime created;
+     Long event;
+     Long requester;
     @Enumerated(EnumType.STRING)
-    private RequestStatus status;
+     RequestStatus status;
 
 }

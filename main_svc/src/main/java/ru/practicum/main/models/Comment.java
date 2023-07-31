@@ -1,7 +1,9 @@
 package ru.practicum.main.models;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,17 +19,18 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "comments")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String text;
+     Long id;
+     String text;
     @Column(name = "created_time")
-    private LocalDateTime created;
+     LocalDateTime created;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User author;
+     User author;
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private Event event;
+     Event event;
 }

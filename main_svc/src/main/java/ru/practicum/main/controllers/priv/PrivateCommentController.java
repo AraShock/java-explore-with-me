@@ -25,6 +25,8 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static ru.practicum.main.constants.Pattern.COMMENT_ID;
+
 @RestController
 @RequestMapping("/users/{userId}/comments")
 @Validated
@@ -40,16 +42,16 @@ public class PrivateCommentController {
         return commentService.createComment(newCommentDto, userId, eventId);
     }
 
-    @PatchMapping("/{commentId}")
+    @PatchMapping(COMMENT_ID)
     public CommentDto updateComment(@RequestBody @Valid NewCommentDto newCommentDto,
                                     @PathVariable(value = "userId") Long userId,
-                                    @PathVariable(value = "commentId") Long commentId) {
+                                    @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.updateCommentByUser(newCommentDto, userId, commentId);
     }
 
-    @GetMapping("/{commentId}")
+    @GetMapping(COMMENT_ID)
     public CommentDto getCommentById(@PathVariable(value = "userId") Long userId,
-                                     @PathVariable(value = "commentId") Long commentId) {
+                                     @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.getCommentsByIdByUser(userId, commentId);
     }
 
@@ -68,10 +70,10 @@ public class PrivateCommentController {
         return commentService.getUserCommentsByCreateTime(userId, createStart, createEnd, from, size);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping(COMMENT_ID)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCommentByUser(@PathVariable(value = "userId") Long userId,
-                                    @PathVariable(value = "commentId") Long commentId) {
+                                    @PathVariable(value = COMMENT_ID) Long commentId) {
         commentService.deleteCommentByUser(userId, commentId);
     }
 }
