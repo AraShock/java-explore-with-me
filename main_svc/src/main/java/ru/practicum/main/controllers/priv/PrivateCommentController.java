@@ -24,7 +24,7 @@ import static ru.practicum.main.constants.Pattern.ENDPOINT;
 @RequiredArgsConstructor
 public class PrivateCommentController {
     private final CommentService commentService;
-    private static final String COMMENT_ID = "commentId";
+
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
