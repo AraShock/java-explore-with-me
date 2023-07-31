@@ -15,11 +15,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommentDto {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.COMMENT_ID)
      Long id;
      String text;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
-    String commentID;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.COMMENT_ID)
      LocalDateTime created;
      String authorName;
      Long eventId;
