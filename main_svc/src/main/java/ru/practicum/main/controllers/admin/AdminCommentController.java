@@ -20,7 +20,8 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
-import static ru.practicum.main.constants.Pattern.COMMENT_ID;
+
+import static ru.practicum.main.constants.Pattern.ENDPOINT;
 
 
 @RestController
@@ -28,7 +29,7 @@ import static ru.practicum.main.constants.Pattern.COMMENT_ID;
 @RequiredArgsConstructor
 public class AdminCommentController {
     private final CommentService commentService;
-
+    public static final String COMMENT_ID = "commentId";
 
     @GetMapping
     public List<CommentDto> getCommentsByEventId(@Positive
@@ -40,18 +41,18 @@ public class AdminCommentController {
         return commentService.getCommentsByEventIdByAdmin(eventId, from, size);
     }
 
-    @GetMapping("/{commentId}")
+    @GetMapping(ENDPOINT)
     public CommentDto getCommentById(@PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.getCommentsByIdByAdmin(commentId);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable(value = COMMENT_ID) Long commentId) {
         commentService.deleteCommentByAdmin(commentId);
     }
 
-    @PatchMapping("/{commentId}")
+    @PatchMapping(ENDPOINT)
     public CommentDto updateComment(@RequestBody @Valid NewCommentDto newCommentDto,
                                     @PathVariable(value = COMMENT_ID) Long commentId) {
         return commentService.updateCommentByAdmin(newCommentDto, commentId);
