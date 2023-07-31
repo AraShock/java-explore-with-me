@@ -12,8 +12,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
-import static ru.practicum.main.constants.Pattern.ENDPOINT;
-
 
 @RestController
 @RequestMapping("/admin/comments")
@@ -21,6 +19,7 @@ import static ru.practicum.main.constants.Pattern.ENDPOINT;
 public class AdminCommentController {
     private final CommentService commentService;
     public static final String COMMENT_ID = "commentId";
+    public static final String ENDPOINT = "/{" + COMMENT_ID +"}";
 
 
     @GetMapping

@@ -16,7 +16,7 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.practicum.main.constants.Pattern.ENDPOINT;
+import static ru.practicum.main.controllers.admin.AdminCommentController.COMMENT_ID;
 
 @RestController
 @RequestMapping("/users/{userId}/comments")
@@ -24,6 +24,7 @@ import static ru.practicum.main.constants.Pattern.ENDPOINT;
 @RequiredArgsConstructor
 public class PrivateCommentController {
     private final CommentService commentService;
+    public static final String ENDPOINT = "/{" + COMMENT_ID +"}";
 
 
     @PostMapping("/{eventId}")
