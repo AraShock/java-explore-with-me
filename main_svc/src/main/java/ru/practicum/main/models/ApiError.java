@@ -9,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiError {
-     String message;
-     String reason;
-     String status;
-     String timestamp;
+    private String message;
+    private String reason;
+    private String status;
+    private String timestamp;
 }
