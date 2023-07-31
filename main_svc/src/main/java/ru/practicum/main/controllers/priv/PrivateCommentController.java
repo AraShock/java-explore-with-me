@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static ru.practicum.main.controllers.admin.AdminCommentController.COMMENT_ID;
+import static ru.practicum.main.controllers.admin.AdminCommentController.ENDPOINT;
 
 @RestController
 @RequestMapping("/users/{userId}/comments")
@@ -24,8 +25,6 @@ import static ru.practicum.main.controllers.admin.AdminCommentController.COMMENT
 @RequiredArgsConstructor
 public class PrivateCommentController {
     private final CommentService commentService;
-    public static final String ENDPOINT = "/{" + COMMENT_ID +"}";
-
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
