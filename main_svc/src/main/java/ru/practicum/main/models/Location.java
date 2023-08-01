@@ -1,9 +1,7 @@
 package ru.practicum.main.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
@@ -13,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "locations", schema = "public")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

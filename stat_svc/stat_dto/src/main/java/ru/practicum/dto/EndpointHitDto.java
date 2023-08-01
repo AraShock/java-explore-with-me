@@ -9,9 +9,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EndpointHitDto {
-     Long id;
-     String app;
-     String uri;
-     String ip;
-     String timestamp;
+    Long id;
+    String app;
+    String uri;
+    String ip;
+    String timestamp;
 }

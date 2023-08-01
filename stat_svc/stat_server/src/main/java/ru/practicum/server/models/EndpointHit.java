@@ -23,5 +23,5 @@ public class EndpointHit {
      String uri;
      String ip;
     @DateTimeFormat(pattern = Pattern.DATE)
-    private LocalDateTime timestamp;
+     LocalDateTime timestamp;
 }
